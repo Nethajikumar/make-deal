@@ -48,33 +48,34 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-soft">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-morphism border-white/10 bg-white/80 backdrop-blur-xl shadow-2xl shadow-black/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo and Home Button */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             <Link 
               to="/" 
-              className="text-xl font-bold text-primary hover:text-primary-glow transition-colors duration-200"
+              className="text-2xl font-black text-primary hover:text-primary-glow transition-all duration-300 tracking-tighter"
               onClick={closeMobileMenu}
             >
-              Make-Deal
+              Make<span className="text-foreground">-Deal</span>
             </Link>
           </div>
 
+
           {/* Desktop Navigation */}
           {navigationItems.length > 0 && (
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-2">
               {navigationItems.map((item) => (
                 <NavLink
                   key={item.href}
                   to={item.href}
                   className={({ isActive }) =>
                     cn(
-                      "flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                      "flex items-center space-x-2 px-6 py-3 rounded-2xl text-sm font-bold transition-all duration-300",
                       isActive
-                        ? "bg-primary text-primary-foreground shadow-medium"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? "bg-primary text-white shadow-lg shadow-primary/20 scale-105"
+                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
                     )
                   }
                   onClick={closeMobileMenu}
@@ -83,17 +84,19 @@ const Navbar: React.FC = () => {
                   <span>{item.label}</span>
                 </NavLink>
               ))}
+              <div className="h-8 w-px bg-black/5 mx-4" />
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleLogout}
-                className="ml-4 text-muted-foreground hover:text-foreground"
+                className="text-muted-foreground hover:text-red-500 hover:bg-red-50 font-bold px-4 h-10 rounded-xl transition-all"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
               </Button>
             </div>
           )}
+
 
           {/* Mobile Menu Button */}
           {navigationItems.length > 0 && (
